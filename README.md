@@ -1,4 +1,4 @@
-# MAC-LISTEN
+# MAC-SNOOP
 An NPM module useful for WiFi password cracking. Useful to use with [hashcat](https://hashcat.net/hashcat/).
 
 This package is only for macOS, I wrote it because a lot of alternatives seemed overly complicated or unavailable on Mac.
