@@ -1,0 +1,29 @@
+{
+  "name": "mac-snoop",
+  "version": "1.0.0",
+  "description": "A CLI tool to listen to network handshakes and beacons. Useful for password cracking.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\""
+  },
+  "keywords": [
+    "CLI",
+    "network",
+    "macOS",
+    "hashcat"
+  ],
+  "bin": {
+    "snoop": "index.js"
+  },
+  "author": "Eli Richardson",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.0.0",
+    "commander": "^8.3.0",
+    "execa": "^6.0.0",
+    "is-root": "^3.0.0",
+    "ora": "^6.0.1",
+    "prompt": "^1.2.1"
+  }
+}
