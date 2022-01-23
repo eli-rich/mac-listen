@@ -22,7 +22,7 @@ const config = new Config(path.join(__dirname, "src", "config", "config.json"));
 
 const program = new Command();
 program
-    .version(chalk.green('1.0.0'))
+    .version(chalk.green('1.0.1'))
     .option("-p, --password [password]", `specify system password ${chalk.green('(default: <input>)')}`)
     .option("-o, --output [path]", "specifies output file", "hash.hc22000")
     .option("-b, --beacon [path]", "specify beacon file", "beacon.cap")
