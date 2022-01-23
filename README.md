@@ -8,9 +8,10 @@ This package is only for macOS, I wrote it because a lot of alternatives seemed 
 ## Requirements
 
  1. [Homebrew](https://brew.sh)
- 2. TCPDUMP (preinstalled on macOS AFAIK)
- 3. [Wireshark](https://www.wireshark.org/download.html). If you do not have Wireshark, it will be installed on first use.
- 4. [Hcxtools](https://github.com/ZerBea/hcxtools). If you do not have these, they will also be installed on first use.
+ 2. [Node.js](https://nodejs.org/en/)
+ 3. TCPDUMP (preinstalled on macOS AFAIK)
+ 4. [Wireshark](https://www.wireshark.org/download.html). If you do not have Wireshark, it will be installed on first use.
+ 5. [Hcxtools](https://github.com/ZerBea/hcxtools). If you do not have these, they will also be installed on first use.
 
 Note: Please make sure these tools are accessible from your command line and added to your path. This is how the CLI detects their installation. Make sure 
 `which mergecap` 
