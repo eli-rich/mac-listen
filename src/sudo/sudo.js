@@ -5,15 +5,15 @@ class Sudo {
         this.password = password || undefined;
         return this;
     }
-    async exec(command, askPass = false) {
-        if (this.password !== undefined && askPass === false) {
+    async exec(command, options) {
+        if (this.password !== undefined) {
             command = `-S `.concat(command);
         }
         if (!command.startsWith("sudo ")) command = "sudo ".concat(command);
         let result;
         try {
-            if (this.password && askPass !== false) result = await execaCommand(command, {input: this.password});
-            else result = await execaCommand(command);
+            if (this.password) options.input = this.password;
+            result = await execaCommand(command, options);
         } catch (error) {
             err(error);
         }

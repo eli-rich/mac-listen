@@ -1,7 +1,7 @@
 import path from "path";
 import fs from "fs/promises";
-
-import ora from "ora";
+import Stream from "stream";
+import { pipeline, finished } from "stream/promises";
 import prompt from "prompt";
 
 import err from "../error.js";
@@ -29,11 +29,21 @@ class Network {
         return this.parseRange(output.stdout);
     }
 
+    async listInterfaces() {
+        let output;
+        try {
+            output = this.sudo("networksetup -listallhardwareports");
+        } catch (error) {
+            err(error);
+        }
+        return output;
+    }
+
     async getBeacon(outFile) {
         try {
             await this.sudo("airport -z");
             await this.sudo("airport -c"+this.net.channel);
-            await this.sudo(`tcpdump type mgt subtype beacon and ether src ${this.net.mac} -I -c ${this.net.channel} -i ${this.inter} -w ${outFile}`, true);
+            await this.sudo(`tcpdump type mgt subtype beacon and ether src ${this.net.mac} -I -c ${this.net.channel} -i ${this.inter} -w ${outFile}`, {stdout: undefined});
         } catch (error) {
             err(error);
         }
@@ -42,7 +52,7 @@ class Network {
 
     async getHandshake(outFile) {
         try {
-            await this.sudo(`tcpdump ether proto 0x888e and ether host ${this.net.mac} -c 1 -I -U -vvv -i ${this.inter} -w ${outFile}`);
+            await this.sudo(`tcpdump ether proto 0x888e and ether host ${this.net.mac} -c 1 -I -U -vvv -i ${this.inter} -w ${outFile}`, {stdout: undefined});
         } catch (error) {
             err(error);
         }
@@ -55,6 +65,7 @@ class Network {
         try {
             await this.sudo(`mergecap -a -F pcap -w ${tmp} ${beacon} ${handshake}`);
             await this.sudo(`hcxpcapngtool -o ${outFile} ${tmp}`);
+            await fs.readFile(outFile);
             await fs.unlink(beacon);
             await fs.unlink(handshake);
             await fs.unlink(tmp);

@@ -1,6 +1,6 @@
 {
   "name": "mac-snoop",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A CLI tool to listen to network handshakes and beacons. Useful for password cracking.",
   "main": "index.js",
   "type": "module",
@@ -19,6 +19,7 @@
   "author": "Eli Richardson",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.25.0",
     "chalk": "^5.0.0",
     "commander": "^8.3.0",
     "execa": "^6.0.0",
